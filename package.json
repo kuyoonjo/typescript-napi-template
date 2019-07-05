@@ -1,0 +1,63 @@
+{
+  "name": "typescript-napi-template",
+  "version": "1.0.0",
+  "description": "Typescript Napi Template",
+  "license": "MIT",
+  "repository": "https://github.com/kuyoonjo/typescript-napi-template.git",
+  "author": {
+    "name": "Yu Chen",
+    "email": "yu@chen.news",
+    "url": "https://yu.chen.news"
+  },
+  "keywords": [
+    "typescript",
+    "napi",
+    "generator",
+    "node",
+    "module",
+    "javascript",
+    "js"
+  ],
+  "files": [
+    "lib",
+    "build"
+  ],
+  "main": "lib/index",
+  "types": "lib/index",
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "npm run build:cc && npm run build:ts",
+    "build:ts": "tsc --pretty",
+    "build:cc": "node-gyp rebuild",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "gypfile": true,
+  "dependencies": {
+    "node-addon-api": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.3",
+    "@types/node": "^10.11.4",
+    "coveralls": "^3.0.2",
+    "glob": "^7.1.4",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  }
+}
